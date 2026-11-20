@@ -592,15 +592,7 @@ $('artboard').style.background = $('bgColor').value;
 $('artTitle').style.color = textColor;
 
 
-// 제목 및 부제목 변경
-$('customTitle').addEventListener('input', render);
-$('customSubtitle').addEventListener('input', render);
 
-// 제목 크기 변경
-$('titleSize').addEventListener('input', render);
-
-// 글자색 변경
-$('textColor').addEventListener('input', render);
 
  const columnCount=Math.max(2,Math.min(10,Number($('columns').value)||3));const grid=$('chosenGrid');grid.style.gridTemplateColumns=`repeat(${columnCount}, minmax(0, 1fr))`;grid.dataset.columns=String(columnCount);
 if(!chosen.length) {
@@ -616,8 +608,11 @@ if(!chosen.length) {
  for(const [id,list] of [['ownedGrid',owned],['wantedGrid',wanted]]){const g=$(id);g.style.gridTemplateColumns=`repeat(${columnCount}, minmax(0, 1fr))`;g.innerHTML=list.length?list.map(c=>`<div class="chosen-card"><img src="${c.src}" alt=""><div class="chosen-name">${escapeHtml(c.name)}</div></div>`).join(''):'<div class="empty">포카를 선택해 주세요.</div>';}
  $('artboard').style.background=$('bgColor').value;$('bgHex').value=$('bgColor').value.toUpperCase();
 }
-$('search').addEventListener('input',render);
-$('category').addEventListener('change',render);
+// 제목 및 글자 꾸미기 변경 이벤트
+$('customTitle').addEventListener('input', render);
+$('titleSize').addEventListener('input', render);
+$('textColor').addEventListener('input', render);
+  
 $('selectVisible').addEventListener('click',()=>{const q=$('search').value.trim().toLowerCase(),cat=$('category').value;cards.filter(c=>(cat==='all'||c.category===cat)&&(c.name+' '+c.tags+' '+c.category).toLowerCase().includes(q)).forEach(c=>selected.add(c.id));render()});
 $('clearSelected').addEventListener('click',()=>{selected.clear();ownedCards.clear();wantedCards.clear();render()});
 $('resetLayout').addEventListener('click',()=>{selected.clear();ownedCards.clear();wantedCards.clear();render()});
