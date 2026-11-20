@@ -467,6 +467,11 @@ input[type=file]{display:none}
       <option value="8">8열</option>
       <option value="9">9열</option>
       <option value="10">10열</option>
+      <option value="11">11열</option>
+      <option value="12">12열</option>
+      <option value="13">13열</option>
+      <option value="14">14열</option>
+      <option value="15">15열</option>
     </select>
   </div>
 
@@ -603,7 +608,7 @@ $('artTitle').style.color = textColor;
 
 
 
- const columnCount=Math.max(1,Math.min(10,Number($('columns').value)||3));const grid=$('chosenGrid');grid.style.gridTemplateColumns=`repeat(${columnCount}, minmax(0, 1fr))`;grid.dataset.columns=String(columnCount);
+ const columnCount=Math.max(1,Math.min(15,Number($('columns').value)||3));const grid=$('chosenGrid');grid.style.gridTemplateColumns=`repeat(${columnCount}, minmax(0, 1fr))`;grid.dataset.columns=String(columnCount);
 if(!chosen.length) {
   grid.innerHTML = '<div class="empty">왼쪽 보관함에서 구하고 싶은 포카를 선택해 주세요.</div>';
 } else {
@@ -637,7 +642,7 @@ async function savePNG(){
   const chosen=isTrade?[...owned.map(c=>({...c,_side:'owned'})),...wanted.map(c=>({...c,_side:'wanted'}))]:cards.filter(c=>selected.has(c.id));
   if(!chosen.length){toast('먼저 포카를 선택해 주세요.');return;}
   button.disabled=true; const oldText=button.textContent; button.textContent='이미지 만드는 중…';
-  const cols=Math.max(1,Math.min(10,Number($('columns').value)||3));
+  const cols=Math.max(1,Math.min(15,Number($('columns').value)||3));
 
 const W=1600, pad=70, gap=18, footH=60, nameH=30, top=pad;
 
