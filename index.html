@@ -506,13 +506,6 @@ input[type=file]{display:none}
 
   
 
-  <div class="control">
-    <label for="titleSize">
-      제목 크기 <span id="titleSizeValue">38px</span>
-    </label>
-    <input id="titleSize" type="range"
-           min="22" max="60" value="38">
-  </div>
 
   <div class="control">
     <label for="textColor">글자색</label>
@@ -609,11 +602,9 @@ if (customTitle) {
 
 
 // 제목 크기 및 글자색 적용
-const titleSize = Number($('titleSize').value);
 const textColor = $('textColor').value;
 
-$('titleSizeValue').textContent = titleSize + 'px';
-$('artTitle').style.fontSize = titleSize + 'px';
+
 
 $('artboard').style.color = textColor;
 $('artboard').style.background = $('bgColor').value;
@@ -638,7 +629,6 @@ if(!chosen.length) {
 }
 // 제목 및 글자 꾸미기 변경 이벤트
 $('customTitle').addEventListener('input', render);
-$('titleSize').addEventListener('input', render);
 $('textColor').addEventListener('input', render);
   
 $('selectVisible').addEventListener('click',()=>{const q=$('search').value.trim().toLowerCase(),cat=$('category').value;cards.filter(c=>(cat==='all'||c.category===cat)&&(c.name+' '+c.tags+' '+c.category).toLowerCase().includes(q)).forEach(c=>selected.add(c.id));render()});
@@ -661,8 +651,7 @@ async function savePNG(){
 const W=1600, pad=70, gap=18, footH=60, nameH=30, top=pad;
 
 // 꾸미기 설정값 가져오기
-const titleFontSize = Number($('titleSize').value);
-const canvasTitleSize = Math.round(titleFontSize * 1.53);
+const canvasTitleSize = 58;
 const textColor = $('textColor').value;
 
 // 제목 및 부제목
