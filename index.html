@@ -309,6 +309,13 @@ input[type=file]{display:none}
 }
 </style>
   
+<!-- PWA 설정 -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="포카 위시">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
 <!-- 휴대폰 홈 화면 아이콘 -->
 <link rel="apple-touch-icon" href="./icons/wishicon.png">
 <meta name="apple-mobile-web-app-title" content="포카 위시">
@@ -7508,5 +7515,21 @@ cards = catalogue.map(item => ({
 render();
 
 </script>
+  
+<!-- PWA 서비스 워커 등록 -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => {
+        console.log('포카 위시 앱 설정 완료');
+      })
+      .catch(error => {
+        console.error('앱 설정 오류:', error);
+      });
+  });
+}
+</script>
+
 </body>
 </html>
