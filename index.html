@@ -561,6 +561,15 @@ input[type=file]{display:none}
     </div>
   </div>
 
+<div class="control">
+    <label for="textColor">글자색</label>
+    <div class="color-row">
+      <input id="textColor" type="color" value="#252525">
+      <input id="textHex" type="text" value="#252525"
+             maxlength="7" aria-label="글자색 HEX 코드">
+    </div>
+  </div>
+  
   <div class="control">
     <label for="customTitle">제목 입력</label>
     <input id="customTitle" type="text"
@@ -577,12 +586,9 @@ input[type=file]{display:none}
            min="20" max="60" value="38">
   </div>
 
-  <div class="control">
-    <label for="textColor">글자색</label>
-    <div class="color-row">
-      <input id="textColor" type="color" value="#252525">
-    </div>
-  </div>
+  
+  
+
 
 </div>
 
@@ -681,6 +687,7 @@ $('artTitle').style.fontSize = titleSize + 'px';
 $('artboard').style.color = textColor;
 $('artboard').style.background = $('bgColor').value;
 $('artTitle').style.color = textColor;
+$('textHex').value = textColor.toUpperCase();
 
 
 
@@ -710,7 +717,21 @@ $('resetLayout').addEventListener('click',()=>{selected.clear();ownedCards.clear
 $('listType').addEventListener('change',render);$('columns').addEventListener('input',render);$('columns').addEventListener('change',render);
 $('bgColor').addEventListener('input',render);
 $('bgHex').addEventListener('change',()=>{let v=$('bgHex').value.trim();if(!v.startsWith('#'))v='#'+v;if(/^#[0-9a-fA-F]{6}$/.test(v)){$('bgColor').value=v;render()}else toast('HEX 코드를 확인해 주세요.');});
-async function savePNG(){
+// 글자색 HEX 코드 직접 입력
+$('textHex').addEventListener('change', () => {
+  let v = $('textHex').value.trim();
+
+  if (!v.startsWith('#')) v = '#' + v;
+
+  if (/^#[0-9a-fA-F]{6}$/.test(v)) {
+    $('textColor').value = v;
+    render();
+  } else {
+    toast('HEX 코드를 확인해 주세요.');
+    $('textHex').value = $('textColor').value.toUpperCase();
+  }
+});
+  async function savePNG(){
  const button=$('saveImage');
  try {
   const isTrade=$('listType').value==='trade';
