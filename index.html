@@ -7591,6 +7591,7 @@ const catalogue = [
 // 이미지 목록을 사이트에 표시
 // =====================================
 
+// 포카 데이터 불러오기
 cards = catalogue.map(item => ({
   id: item.id,
   name: item.name,
@@ -7599,6 +7600,17 @@ cards = catalogue.map(item => ({
   src: item.image
 }));
 
+// 검색어 입력 즉시 검색
+$('search').addEventListener('input', () => {
+  render();
+});
+
+// 카테고리 변경 즉시 필터링
+$('category').addEventListener('change', () => {
+  render();
+});
+
+// 처음 화면 표시
 render();
 
 </script>
