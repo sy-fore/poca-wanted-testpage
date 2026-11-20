@@ -307,6 +307,81 @@ input[type=file]{display:none}
     text-decoration: underline;
   }
 }
+  
+/* =========================
+   모바일 미리보기 화면 수정
+========================= */
+@media (max-width: 480px) {
+
+  /* 미리보기 영역 */
+  .canvas-wrap {
+    width: 100%;
+    min-width: 0;
+    padding: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* 실제 미리보기 판 */
+  #artboard {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 14px;
+    overflow: visible;
+  }
+
+  /* 제목 영역 */
+  .art-head {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* 제목 글자 */
+  .art-title {
+    font-size: clamp(18px, 6vw, 30px);
+    letter-spacing: -1px;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  /* 포카 목록 */
+  #chosenGrid {
+    width: 100%;
+    min-width: 0;
+    gap: 7px;
+  }
+
+  /* 교환 리스트 */
+  .trade-layout {
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .trade-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .trade-side {
+    min-width: 0;
+  }
+
+  /* 포카 이름 */
+  .chosen-name {
+    font-size: 8px;
+    overflow-wrap: anywhere;
+  }
+
+}
+
 </style>
 </head>
 <body>
